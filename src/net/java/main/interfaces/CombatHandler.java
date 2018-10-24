@@ -1,15 +1,14 @@
 package net.java.main.interfaces;
 
-import net.java.main.models.spells.SpellImpl;
-import net.java.main.models.units.BaseUnit;
-
 import java.util.List;
+
+import net.java.main.exceptions.NotEnoughEnergyException;
 
 public interface CombatHandler {
 
-    void setUnit(BaseUnit unit);
+	  void setUnit(Unit unit);
 
-    BaseUnit pickNextTarget(List<BaseUnit> targetCandidates);
+	    Unit pickNextTarget(List<Unit> targetCandidates);
 
-    SpellImpl generateAttack();
+	    Spell generateAttack() throws NotEnoughEnergyException;
 }

@@ -1,21 +1,12 @@
 package net.java.main.models.spells;
 
-public class RageShoot  extends SpellImpl{
+public class RageShoot  extends BaseSpell{
 
-	private final int ENERGY_COAST = 10;
-	
-	protected RageShoot(int energyCost) {
-		super(energyCost);
-	
-	}
 
-	@Override
-	public int getEnergyCoast() {
-		
-		return this.ENERGY_COAST;
-	}
+    private static final int ENERGY_COST = 10;
 
-	
-
+    public RageShoot(int damage) {
+        super(damage, ENERGY_COST);
+    }
 
 }

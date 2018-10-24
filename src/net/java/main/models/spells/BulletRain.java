@@ -1,19 +1,11 @@
 package net.java.main.models.spells;
 
-public class BulletRain extends SpellImpl {
- 
-	private final int ENERGY_COAST = 10;
-	
-	protected BulletRain(int energyCost) {
-		super( energyCost);
-		// TODO Auto-generated constructor stub
-	}
+public class BulletRain extends BaseSpell {
 
-	@Override
-	public int getEnergyCoast() {
-		// TODO Auto-generated method stub
-		return this.ENERGY_COAST;
-	}
+    private static final int ENERGY_COST = 15;
 
+    public BulletRain(int damage) {
+        super(damage, ENERGY_COST);
+    }
 	
 }

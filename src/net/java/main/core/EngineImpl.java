@@ -1,15 +1,16 @@
 package net.java.main.core;
 
+
 import net.java.main.dispachers.CommandDispatcher;
-import net.java.main.exceptions.GameException;
+import net.java.main.exceptions.*;
 import net.java.main.interfaces.Engine;
 import net.java.main.interfaces.InputReader;
 import net.java.main.interfaces.OutputWriter;
 
 
-
 import java.io.IOException;
 
+import static net.java.main.constants.GameConstants.TERMINATE_OUTPUT;
 
 public class EngineImpl implements Engine {
 
@@ -17,19 +18,17 @@ public class EngineImpl implements Engine {
     private OutputWriter consoleWriter;
     private CommandDispatcher commandDispatcher;
     private boolean isStarted;
-    
-    public EngineImpl(
-            OutputWriter consoleWriter,
-            InputReader consoleReader,
-            CommandDispatcher commandDispatcher) {
+
+    public EngineImpl(InputReader consoleReader, OutputWriter consoleWriter,
+                      CommandDispatcher commandDispatcher) {
         this.consoleWriter = consoleWriter;
         this.consoleReader = consoleReader;
         this.commandDispatcher = commandDispatcher;
     }
 
     public void start() throws IOException {
+        this.isStarted = true;
 
-    	this.isStarted = true;
         while (this.isStarted) {
             try {
                 String userInput = this.consoleReader.readLine();
@@ -37,13 +36,13 @@ public class EngineImpl implements Engine {
 
                 String result = this.commandDispatcher.dispatchCommand(args);
 
-                 this.consoleWriter.writeLine(result);
+                this.consoleWriter.writeLine(result);
 
-                if (result.equals("Game over!")) {
+                if (result.equals(TERMINATE_OUTPUT)) {
                     this.isStarted = false;
                 }
-            } catch (GameException | IOException e) {
-               this.consoleWriter.writeLine(e.getMessage());
+            } catch (InvalidUnitTypeException | InvalidPositionException | UnknownCommandException | UnitNotExistException | NotEnoughEnergyException | IOException e) {
+                this.consoleWriter.writeLine(e.getMessage());
             }
         }
     }

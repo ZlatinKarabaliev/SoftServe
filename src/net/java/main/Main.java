@@ -1,24 +1,27 @@
 package net.java.main;
 
-import java.io.IOException;
-
 import net.java.main.core.EngineImpl;
 import net.java.main.dispachers.CommandDispatcher;
-
-import net.java.main.interfaces.InputReader;
-import net.java.main.interfaces.OutputWriter;
+import net.java.main.interfaces.*;
 import net.java.main.io.ConsoleReader;
 import net.java.main.io.ConsoleWriter;
+import net.java.main.models.BattlegroundImpl;
+import net.java.main.repository.UnitRepository;
+
+import java.io.IOException;
 
 public class Main {
+    private static final int ROWS = 5;
+    private static final int COLS = 5;
 
     public static void main(String[] args) throws IOException {
-        OutputWriter writer = new ConsoleWriter();
         InputReader reader = new ConsoleReader();
-        
-        CommandDispatcher commandDispatcher = new CommandDispatcher();
+        OutputWriter writer = new ConsoleWriter();
+        Battleground battleground = new BattlegroundImpl(ROWS, COLS);
+        Repository<Unit> unitRepository = new UnitRepository();
+        CommandDispatcher commandDispatcher = new CommandDispatcher(battleground, unitRepository);
+        Engine gameGameEngine = new EngineImpl(reader, writer, commandDispatcher);
 
-        EngineImpl gameEngine = new EngineImpl(writer,reader, commandDispatcher);
-        gameEngine.start();
+        gameGameEngine.start();
     }
 }
