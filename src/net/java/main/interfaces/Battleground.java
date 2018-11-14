@@ -1,8 +1,6 @@
 package net.java.main.interfaces;
 
 import net.java.main.exceptions.InvalidPositionException;
-import net.java.main.models.units.BaseUnit;
-
 import java.util.List;
 
 public interface Battleground {
