@@ -1,0 +1,9 @@
+{
+  "results": [
+    "No enough spawns for fight!",
+    "marin of type Marine has spawn @(2, 2)",
+    "gosho of type Carrier has spawn @(1, 1)",
+    "gosho cast BulletRain spell and did 15 damage\r\nmarin cast RageShoot spell and did 15 damage",
+    "Game over!"
+  ]
+}
